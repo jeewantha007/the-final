@@ -6,38 +6,51 @@
     <link rel="stylesheet" href="style.css">
     <title>The Final Question</title>
 </head>
-<body style="background-color: red;" onload="playMusic()">
-    
-    <!-- Background Music -->
+<body style="background-color: red;">
+
+    <!-- Preloader Screen with Button -->
+    <div id="preloader" style="position: fixed; width: 100%; height: 100vh; background: black; color: white; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 1000;">
+        <h1>Click to Start</h1>
+        <button onclick="startApp()" style="padding: 15px 30px; font-size: 18px; cursor: pointer;">Start</button>
+    </div>
+
+    <!-- Background Music (Initially Hidden) -->
     <audio id="bgMusic" loop>
         <source src="music/Kal Ho Na Ho - Heartbeat Instrumental! - Sharvan Goordyal.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <div class="container">
-        <div class="js-container container" style="top:0px !important;">
-            <img id="image" src="https://media.tenor.com/xDpeMcJaI1kAAAAj/love-you.gif" alt="">
-            <h1 id="quz">Shall we give 2025 a chance?</h1>
-            <p id="message">
-                💖 We've come this far, and I respect your wish to take things slow and know each other better. 
-                I’m willing to do that if it means understanding you more and growing together. So, how about we give 
-                the whole of 2025 to see where this journey takes us?
-            </p>
-            <div class="btn-container">
-                <button id="yesBtn" onclick="yesButton()">Yes</button>
-                <button id="noBtn" onclick="btunSizeChanger()">No</button>
+    <!-- Main Content (Hidden at Start) -->
+    <div id="mainContent" style="display: none;">
+        <div class="container">
+            <div class="js-container container" style="top:0px !important;">
+                <img id="image" src="https://media.tenor.com/xDpeMcJaI1kAAAAj/love-you.gif" alt="">
+                <h1 id="quz">Shall we give 2025 a chance?</h1>
+                <p id="message">
+                    💖 We've come this far, and I respect your wish to take things slow and know each other better. 
+                    I’m willing to do that if it means understanding you more and growing together. So, how about we give 
+                    the whole of 2025 to see where this journey takes us?
+                </p>
+                <div class="btn-container">
+                    <button id="yesBtn" onclick="yesButton()">Yes</button>
+                    <button id="noBtn" onclick="btunSizeChanger()">No</button>
+                </div>
+                <h2 id="display-1"></h2>
+                <h1 id="display-2"></h1>
+                <h3 id="display-3"></h3>
             </div>
-            <h2 id="display-1"></h2>
-            <h1 id="display-2"></h1>
-            <h3 id="display-3"></h3>
         </div>
     </div>
 
     <script>
-        // Function to autoplay background music
-        function playMusic() {
+        function startApp() {
+            // Play music
             let music = document.getElementById("bgMusic");
-            music.play().catch(error => console.log("Autoplay blocked: User interaction needed"));
+            music.play();
+
+            // Hide preloader and show main content
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
         }
 
         function yesButton() {
@@ -48,5 +61,6 @@
             document.getElementById("display-1").innerText = "I understand... I promise I won’t be a problem anymore. I’ll slowly disappear from your life, no tricks, no drama. 💔";
         }
     </script>
+
 </body>
 </html>
